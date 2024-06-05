@@ -40,6 +40,7 @@ class LottoViewController: UIViewController {
         setUpLayout()
         setUpUI()
         setUpPicker()
+        callRequest(turn: "1111")
         
     }
     
@@ -195,7 +196,7 @@ class LottoViewController: UIViewController {
         numberTextField.inputAccessoryView = toolbar
         
         numberTextField.delegate = self
-        for i in 1...1100{
+        for i in 1...1121{
             pickerData.append(String(i))
         }
     }
@@ -214,7 +215,53 @@ class LottoViewController: UIViewController {
         me.clipsToBounds = true
         me.textColor = .white
     }
-    
+    func callRequest(turn: String) {
+        APIKey.lottoURL = turn
+        AF.request(APIKey.lottoURL).responseDecodable(of: LottoModel.self) { respons in
+            switch respons.result{
+            case .success(let data):
+                self.succesNetworkAndSetView(lotto: data)
+                
+            case .failure(let error):
+                dump(error)
+                
+            }
+        }
+    }
+    // MARK: - 네트워크 진행 후 값을 통해 뷰 업데이트 함수
+    func succesNetworkAndSetView(lotto: LottoModel) {
+        resultRound.text = "\(String(lotto.drwNo))회"
+        dateLabel.text = "\(lotto.drwNoDate) 추첨"
+        num1.text = String(lotto.drwtNo1)
+        num1.backgroundColor = changeNumColor(num: lotto.drwtNo1)
+        num2.text = String(lotto.drwtNo2)
+        num2.backgroundColor = changeNumColor(num: lotto.drwtNo2)
+        num3.text = String(lotto.drwtNo3)
+        num3.backgroundColor = changeNumColor(num: lotto.drwtNo3)
+        num4.text = String(lotto.drwtNo4)
+        num4.backgroundColor = changeNumColor(num: lotto.drwtNo4)
+        num5.text = String(lotto.drwtNo5)
+        num5.backgroundColor = changeNumColor(num: lotto.drwtNo5)
+        num6.text = String(lotto.drwtNo6)
+        num6.backgroundColor = changeNumColor(num: lotto.drwtNo6)
+        num7.text = String(lotto.bnusNo)
+        num7.backgroundColor = changeNumColor(num: lotto.bnusNo)
+    }
+    func changeNumColor(num: Int) -> UIColor {
+        switch num{
+        case ...10:
+            return .systemYellow
+        case 11...20:
+            return .systemBlue
+        case 21...30:
+            return .systemRed
+        case 31...40:
+            return .systemGray5
+            
+        default:
+            return .darkGray
+        }
+    }
     @objc func doneButtonTapped() {
         view.endEditing(true)
     }
