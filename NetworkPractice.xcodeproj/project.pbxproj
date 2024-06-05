@@ -17,6 +17,9 @@
 		06C545702C108E8C00B3F23A /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 06C5456F2C108E8C00B3F23A /* Alamofire */; };
 		06C545722C10B12700B3F23A /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C545712C10B12700B3F23A /* APIKey.swift */; };
 		06C545752C10B60000B3F23A /* LottoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C545742C10B60000B3F23A /* LottoModel.swift */; };
+		06C545772C10CAA400B3F23A /* MovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C545762C10CAA400B3F23A /* MovieViewController.swift */; };
+		06C5457A2C10CEFB00B3F23A /* DailyMovieModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C545792C10CEFB00B3F23A /* DailyMovieModel.swift */; };
+		06C5457C2C10D37400B3F23A /* MovieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C5457B2C10D37400B3F23A /* MovieTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +33,9 @@
 		06C545692C1058CA00B3F23A /* LottoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottoViewController.swift; sourceTree = "<group>"; };
 		06C545712C10B12700B3F23A /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
 		06C545742C10B60000B3F23A /* LottoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottoModel.swift; sourceTree = "<group>"; };
+		06C545762C10CAA400B3F23A /* MovieViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieViewController.swift; sourceTree = "<group>"; };
+		06C545792C10CEFB00B3F23A /* DailyMovieModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyMovieModel.swift; sourceTree = "<group>"; };
+		06C5457B2C10D37400B3F23A /* MovieTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,8 +75,9 @@
 				06C545542C1057E700B3F23A /* SceneDelegate.swift */,
 				06C545732C10B5F200B3F23A /* Model */,
 				06C545682C10588800B3F23A /* ViewController */,
-				06C5455B2C1057E800B3F23A /* Assets.xcassets */,
+				06C545782C10CAC000B3F23A /* Cells */,
 				06C5455D2C1057E800B3F23A /* LaunchScreen.storyboard */,
+				06C5455B2C1057E800B3F23A /* Assets.xcassets */,
 				06C545602C1057E800B3F23A /* Info.plist */,
 				06C545712C10B12700B3F23A /* APIKey.swift */,
 			);
@@ -81,6 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				06C545692C1058CA00B3F23A /* LottoViewController.swift */,
+				06C545762C10CAA400B3F23A /* MovieViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -89,8 +97,17 @@
 			isa = PBXGroup;
 			children = (
 				06C545742C10B60000B3F23A /* LottoModel.swift */,
+				06C545792C10CEFB00B3F23A /* DailyMovieModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		06C545782C10CAC000B3F23A /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				06C5457B2C10D37400B3F23A /* MovieTableViewCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -176,7 +193,10 @@
 				06C545532C1057E700B3F23A /* AppDelegate.swift in Sources */,
 				06C545752C10B60000B3F23A /* LottoModel.swift in Sources */,
 				06C545722C10B12700B3F23A /* APIKey.swift in Sources */,
+				06C5457A2C10CEFB00B3F23A /* DailyMovieModel.swift in Sources */,
 				06C545552C1057E700B3F23A /* SceneDelegate.swift in Sources */,
+				06C5457C2C10D37400B3F23A /* MovieTableViewCell.swift in Sources */,
+				06C545772C10CAA400B3F23A /* MovieViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

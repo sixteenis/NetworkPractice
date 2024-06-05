@@ -215,6 +215,7 @@ class LottoViewController: UIViewController {
         me.clipsToBounds = true
         me.textColor = .white
     }
+    // MARK: - 통신 부분
     func callRequest(turn: String) {
         APIKey.lottoURL = turn
         AF.request(APIKey.lottoURL).responseDecodable(of: LottoModel.self) { respons in
