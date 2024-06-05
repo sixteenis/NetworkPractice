@@ -17,7 +17,7 @@ class MovieViewController: UIViewController {
     
     let movieTableView = UITableView()
     
-    var movieList = [DailyMovieModel]()
+    var movieList = [DailyBoxOfficeList]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,6 +67,9 @@ class MovieViewController: UIViewController {
     func setUpMovieTableViw() {
         movieTableView.dataSource = self
         movieTableView.delegate = self
+        movieTableView.register(MovieTableViewCell.self, forCellReuseIdentifier: MovieTableViewCell.id)
+        movieTableView.rowHeight = 60
+        movieTableView.backgroundColor = .black
     }
     // MARK: - UI 세팅 부분
     func setUpUI() {
@@ -85,26 +88,37 @@ class MovieViewController: UIViewController {
     // MARK: - 통신 부분
     func callRequest(turn: String) {
         APIKey.movieURL = turn
-        AF.request(APIKey.movieURL).responseDecodable(of: [DailyMovieModel].self) { respons in
+        AF.request(APIKey.movieURL).responseDecodable(of: DailyMovieModel.self) { respons in
             switch respons.result{
             case .success(let data):
-                self.movieList = data
+                self.succesNetworkAndSetView(movies: data)
             case .failure(let error):
                 dump(error)
                 
             }
         }
     }
+    // MARK: - 네트워크 진행 후 값을 통해 뷰 업데이트 함수
+    func succesNetworkAndSetView(movies: DailyMovieModel) {
+        movieList = movies.boxOfficeResult.dailyBoxOfficeList
+        movieTableView.reloadData()
+    }
     
 }
+
 
 // TODO: 테이블 뷰 세팅
 extension MovieViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 100
+        return movieList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        let cell = movieTableView.dequeueReusableCell(withIdentifier: MovieTableViewCell.id, for: indexPath) as! MovieTableViewCell
+        let data = movieList[indexPath.row]
+        dump(data)
+        cell.setUpData(data: data)
+        
+        return cell
     }
 }

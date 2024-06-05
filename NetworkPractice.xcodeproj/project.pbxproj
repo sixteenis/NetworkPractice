@@ -20,6 +20,7 @@
 		06C545772C10CAA400B3F23A /* MovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C545762C10CAA400B3F23A /* MovieViewController.swift */; };
 		06C5457A2C10CEFB00B3F23A /* DailyMovieModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C545792C10CEFB00B3F23A /* DailyMovieModel.swift */; };
 		06C5457C2C10D37400B3F23A /* MovieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C5457B2C10D37400B3F23A /* MovieTableViewCell.swift */; };
+		06C5457F2C10D6B200B3F23A /* ReuseIdentifier+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C5457E2C10D6B200B3F23A /* ReuseIdentifier+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		06C545762C10CAA400B3F23A /* MovieViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieViewController.swift; sourceTree = "<group>"; };
 		06C545792C10CEFB00B3F23A /* DailyMovieModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyMovieModel.swift; sourceTree = "<group>"; };
 		06C5457B2C10D37400B3F23A /* MovieTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTableViewCell.swift; sourceTree = "<group>"; };
+		06C5457E2C10D6B200B3F23A /* ReuseIdentifier+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReuseIdentifier+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +73,7 @@
 		06C545512C1057E700B3F23A /* NetworkPractice */ = {
 			isa = PBXGroup;
 			children = (
+				06C5457D2C10D68500B3F23A /* Extension+ */,
 				06C545522C1057E700B3F23A /* AppDelegate.swift */,
 				06C545542C1057E700B3F23A /* SceneDelegate.swift */,
 				06C545732C10B5F200B3F23A /* Model */,
@@ -108,6 +111,14 @@
 				06C5457B2C10D37400B3F23A /* MovieTableViewCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		06C5457D2C10D68500B3F23A /* Extension+ */ = {
+			isa = PBXGroup;
+			children = (
+				06C5457E2C10D6B200B3F23A /* ReuseIdentifier+.swift */,
+			);
+			path = "Extension+";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -195,6 +206,7 @@
 				06C545722C10B12700B3F23A /* APIKey.swift in Sources */,
 				06C5457A2C10CEFB00B3F23A /* DailyMovieModel.swift in Sources */,
 				06C545552C1057E700B3F23A /* SceneDelegate.swift in Sources */,
+				06C5457F2C10D6B200B3F23A /* ReuseIdentifier+.swift in Sources */,
 				06C5457C2C10D37400B3F23A /* MovieTableViewCell.swift in Sources */,
 				06C545772C10CAA400B3F23A /* MovieViewController.swift in Sources */,
 			);
