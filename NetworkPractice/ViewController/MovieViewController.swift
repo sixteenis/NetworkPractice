@@ -26,6 +26,7 @@ class MovieViewController: UIViewController {
         setUpUI()
         setUpMovieTableViw()
         callRequest(turn: "20240601")
+        setUpTarget()
     }
     
     // MARK: - connect 부분
@@ -49,11 +50,11 @@ class MovieViewController: UIViewController {
             make.leading.equalTo(view.safeAreaLayoutGuide).offset(10)
             make.top.equalTo(dateTextField.snp.bottom).offset(5)
             make.trailing.equalTo(searchButton.snp.leading).offset(-10)
-            make.height.equalTo(3)
+            make.height.equalTo(4)
         }
         searchButton.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).offset(30)
-            make.trailing.equalTo(view.safeAreaLayoutGuide).offset(10)
+            make.trailing.equalTo(view.safeAreaLayoutGuide).offset(-10)
             make.height.equalTo(50)
             make.width.equalTo(80)
         }
@@ -69,21 +70,35 @@ class MovieViewController: UIViewController {
         movieTableView.delegate = self
         movieTableView.register(MovieTableViewCell.self, forCellReuseIdentifier: MovieTableViewCell.id)
         movieTableView.rowHeight = 60
-        movieTableView.backgroundColor = .black
+        movieTableView.backgroundColor = .systemCyan
     }
     // MARK: - UI 세팅 부분
     func setUpUI() {
-        view.backgroundColor = .black
+        view.backgroundColor = .systemCyan
         
-        dateTextField.backgroundColor = .red
+        dateTextField.textColor = .white
+        dateTextField.placeholder = "날짜 입력 ex)20240101"
+        dateTextField.font = .systemFont(ofSize: 13)
+        
         
         line.backgroundColor = .white
         
         searchButton.backgroundColor = .white
+        searchButton.setTitle("검색", for: .normal)
+        searchButton.setTitleColor(.black, for: .normal)
         
         
     }
     
+    // MARK: - 버튼 설정 부분
+    func setUpTarget() {
+        searchButton.addTarget(self, action: #selector(searchButtonTapped), for: .touchUpInside)
+    }
+    @objc func searchButtonTapped() {
+        if !dateTextField.text!.isEmpty && Int(dateTextField.text!) != nil && dateTextField.text!.count == 8 {
+            callRequest(turn: dateTextField.text!)
+        }
+    }
     
     // MARK: - 통신 부분
     func callRequest(turn: String) {
