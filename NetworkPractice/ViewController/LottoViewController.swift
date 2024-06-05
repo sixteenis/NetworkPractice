@@ -95,7 +95,7 @@ class LottoViewController: UIViewController {
             make.height.equalTo(1)
         }
         resultRound.snp.makeConstraints { make in
-            make.leading.equalTo(view.safeAreaLayoutGuide).offset(180)
+            make.leading.equalTo(view.safeAreaLayoutGuide).offset(120)
             make.top.equalTo(line.snp.bottom).offset(35)
         }
         resultLabel.snp.makeConstraints { make in
@@ -126,7 +126,7 @@ class LottoViewController: UIViewController {
         }
         bonusLabel.snp.makeConstraints { make in
             make.top.equalTo(num7.snp.bottom).offset(5)
-            make.trailing.equalTo(view.safeAreaLayoutGuide).offset(-13)
+            make.trailing.equalTo(view.safeAreaLayoutGuide).offset(-18)
         }
     }
     
@@ -134,27 +134,41 @@ class LottoViewController: UIViewController {
     func setUpUI() {
         view.backgroundColor = .white
         
-        numberTextField.backgroundColor = .red
+        numberTextField.backgroundColor = .white
+        numberTextField.textAlignment = .center
+        numberTextField.layer.cornerRadius = 10
+        numberTextField.textColor = .black
+        numberTextField.font = .systemFont(ofSize: 18)
+        numberTextField.layer.borderColor = UIColor.lightGray.cgColor
+        numberTextField.layer.borderWidth = 1
         
-        informationLabel.backgroundColor = .blue
-        informationLabel.text = "ddd"
-        informationLabel.tintColor = .white
+        informationLabel.backgroundColor = .white
+        informationLabel.text = "당첨번호 안내"
+        informationLabel.textColor = .black
+        informationLabel.font = .systemFont(ofSize: 15)
         
-        dateLabel.backgroundColor = .gray
-        dateLabel.text = "ddd"
+        dateLabel.backgroundColor = .white
+        dateLabel.text = "추첨 날짜 넣어줘야됨"
+        dateLabel.font = .boldSystemFont(ofSize: 12)
+        dateLabel.textColor = .lightGray
         
         line.backgroundColor = .lightGray
         
-        resultRound.text = "11"
-        resultRound.backgroundColor = .red
+        resultRound.backgroundColor = .white
+        resultRound.text = "땡땡회"
+        resultRound.textColor = .systemYellow
+        resultRound.font = .boldSystemFont(ofSize: 24)
         
-        resultLabel.text = "22"
-        resultLabel.backgroundColor = .brown
+        resultLabel.backgroundColor = .white
+        resultLabel.text = "당첨결과"
+        resultLabel.font = .boldSystemFont(ofSize: 24)
         
-        num1.text = "22"
+        
+        num1.text = "88"
         num1.textAlignment = .center
         num1.backgroundColor = .red
         num1.clipsToBounds = true
+        num1.textColor = .white
         
         plusImage.image = UIImage(systemName: "plus")
         plusImage.tintColor = .black
@@ -163,8 +177,10 @@ class LottoViewController: UIViewController {
         num7.textAlignment = .center
         num7.backgroundColor = .red
         num7.clipsToBounds = true
+        num7.textColor = .white
         
         bonusLabel.text = "보너스"
+        bonusLabel.font = .systemFont(ofSize: 13)
     }
     
     // MARK: - 피커 세팅 부분
@@ -196,6 +212,7 @@ class LottoViewController: UIViewController {
         me.backgroundColor = .red
         me.layer.cornerRadius = me.frame.width / 2
         me.clipsToBounds = true
+        me.textColor = .white
     }
     
     @objc func doneButtonTapped() {
