@@ -281,6 +281,7 @@ extension LottoViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        callRequest(turn: String(row+1))
         numberTextField.text = pickerData[row]
     }
 }
