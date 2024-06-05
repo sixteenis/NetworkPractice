@@ -71,6 +71,7 @@ class MovieViewController: UIViewController {
         movieTableView.register(MovieTableViewCell.self, forCellReuseIdentifier: MovieTableViewCell.id)
         movieTableView.rowHeight = 60
         movieTableView.backgroundColor = .systemCyan
+        movieTableView.separatorStyle = .none
     }
     // MARK: - UI 세팅 부분
     func setUpUI() {

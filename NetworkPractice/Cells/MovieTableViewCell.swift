@@ -10,6 +10,7 @@ import UIKit
 import SnapKit
 
 class MovieTableViewCell: UITableViewCell {
+    let backView = UIView()
     let rankLabel = UILabel()
     let movieTitleLabel = UILabel()
     let dateLabel = UILabel()
@@ -26,39 +27,57 @@ class MovieTableViewCell: UITableViewCell {
     }
     // MARK: - connect 부분
     func setUpHierarch() {
-        contentView.addSubview(rankLabel)
+        contentView.addSubview(backView)
+        backView.addSubview(rankLabel)
         contentView.addSubview(movieTitleLabel)
         contentView.addSubview(dateLabel)
     }
     
     // MARK: - Layout 부분
     func setUpLayout() {
-        rankLabel.snp.makeConstraints { make in
-            make.leading.bottom.top.equalTo(contentView.safeAreaLayoutGuide)
+        backView.snp.makeConstraints { make in
+            make.bottom.top.equalTo(contentView.safeAreaLayoutGuide).inset(15)
+            make.leading.equalTo(contentView.safeAreaLayoutGuide)
             make.width.equalTo(50)
+        }
+        rankLabel.snp.makeConstraints { make in
+            make.center.equalTo(backView)
         }
         movieTitleLabel.snp.makeConstraints { make in
             make.top.bottom.equalTo(contentView.safeAreaLayoutGuide)
-            make.leading.equalTo(rankLabel.snp.trailing).offset(15)
-            make.trailing.equalTo(dateLabel.snp.leading).offset(30)
+            make.leading.equalTo(backView.snp.leading).inset(60)
+            make.trailing.equalTo(dateLabel.snp.leading).inset(60)
         }
         dateLabel.snp.makeConstraints { make in
             make.top.bottom.trailing.equalTo(contentView.safeAreaLayoutGuide)
+            make.width.equalTo(80)
         }
     }
     
     // MARK: - UI 세팅 부분
     func setUpUI() {
-        rankLabel.backgroundColor = .red
+        contentView.backgroundColor = .systemCyan
         
-        movieTitleLabel.backgroundColor = .blue
+        backView.backgroundColor = .white
+        //rankLabel.backgroundColor = .white
+        rankLabel.font = .boldSystemFont(ofSize: 16)
+        rankLabel.contentMode = .right
+        rankLabel.textColor = .black
         
-        dateLabel.backgroundColor = .red
+        movieTitleLabel.backgroundColor = .systemCyan
+        movieTitleLabel.font = .boldSystemFont(ofSize: 16)
+        movieTitleLabel.textAlignment = .left
+        movieTitleLabel.numberOfLines = 1
+        movieTitleLabel.textColor = .white
+        
+        dateLabel.backgroundColor = .systemCyan
+        dateLabel.font = .systemFont(ofSize: 13)
+        dateLabel.textColor = .white
     }
     func setUpData(data: DailyBoxOfficeList) {
         rankLabel.text = data.rank
         
-        movieTitleLabel.text = data.movieNm
+        movieTitleLabel.text = "   \(data.movieNm)"
         
         dateLabel.text = data.openDt
     }
