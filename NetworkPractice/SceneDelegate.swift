@@ -19,7 +19,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: scene)
         let vc = SearchMovieViewController()
-        window?.rootViewController = vc // sb entrypoin
+        let nv = UINavigationController(rootViewController: vc)
+        window?.rootViewController = nv // sb entrypoin
         window?.makeKeyAndVisible() // show
     }
 

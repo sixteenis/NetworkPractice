@@ -29,16 +29,25 @@ class SearchMovieViewController: UIViewController {
         setUpLayout()
         setUpUI()
         setUpCollectionView()
-        callRequset()
+        //callRequset()
     }
-    var page = 1
-    var isEnd = 1
-    var movieName = "범죄도시"
-    var list = [MovieModel]() {
-        willSet{
-            collectionView.reloadData()
+    var page = 1 {
+        didSet{
+            callRequset()
         }
     }
+    var isEnd = 1
+    var movieName = "" {
+        didSet{
+            callRequset()
+        }
+    }
+    var list = [MovieModel]() //{
+//        didSet{
+//            //callRequset()
+//            //collectionView.reloadData()
+//        }
+//    }
     
     // MARK: - connect 부분
     func setUpHierarch() {
@@ -62,47 +71,51 @@ class SearchMovieViewController: UIViewController {
     
     // MARK: - UI 세팅 부분
     func setUpUI() {
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         
+        searchBar.delegate = self
+        searchBar.placeholder = "영화 제목을 검색해 보세요."
+        
+        navigationItem.title = "영화 검색"
+        self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.secondaryLabel]
     }
     func setUpCollectionView() {
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.register(SearchMovieCollectionViewCell.self, forCellWithReuseIdentifier: "SearchMovieCollectionViewCell")
-        collectionView.backgroundColor = .white
+        collectionView.prefetchDataSource = self
+        collectionView.register(SearchMovieCollectionViewCell.self, forCellWithReuseIdentifier: SearchMovieCollectionViewCell.id)
+        collectionView.backgroundColor = .systemBackground
+        
     }
     // MARK: - 통신 부분
     func callRequset() {
         let url = "https://api.themoviedb.org/3/search/movie"
         let header: HTTPHeaders = [
             "Authorization": APIKey.movieKey
-            //"Content-Type":"application/json"
         ]
         let param: Parameters = [
             "query": movieName,
             "page": page
-            //"size": 20
-            //"max_tokens": 100
         ]
         AF.request(url,method: .get,parameters: param, headers: header)
             .responseDecodable(of: MovieListModel.self) { [self] respons in
                 switch respons.result{
                 case .success(let value):
-                    //isEnd = value.page
-                    if page == 1 || self.searchBar.text! != movieName{
-                        self.list = value.results
-                        
+                    isEnd = value.total_pages
+                    print(#function)
+                    if page == 1{
+                        self.list = value.results.filter { $0.poster_path != nil}
+                        self.collectionView.scrollsToTop = true
                     }
                     else{
-                        self.list.append(contentsOf: value.results)
+                        self.list.append(contentsOf: value.results.filter { $0.poster_path != nil})
                     }
-                    //self.tableView.reloadData()
-                    
+                    //collectionView.reloadData()
                 case .failure(let error):
                     print("실패")
                     print(error)
                 }
-                movieName = self.searchBar.text!
+                collectionView.reloadData()
             }
     }
 
@@ -114,11 +127,11 @@ extension SearchMovieViewController: UICollectionViewDelegate, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SearchMovieCollectionViewCell", for: indexPath) as! SearchMovieCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchMovieCollectionViewCell.id, for: indexPath) as! SearchMovieCollectionViewCell
         let data = list[indexPath.row]
         cell.setUpData(data: data)
-        cell.movieImage.backgroundColor = .red
-        cell.backgroundColor = .white
+        cell.movieImage.backgroundColor = .systemBackground
+        cell.backgroundColor = .systemBackground
         return cell
     }
     
@@ -126,5 +139,39 @@ extension SearchMovieViewController: UICollectionViewDelegate, UICollectionViewD
 }
 
 extension SearchMovieViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        view.endEditing(true)
+        if !searchBar.text!.isEmpty{
+            self.movieName = searchBar.text!
+            page = 1
+            //callRequset()
+        }
+        
+    }
+}
+extension SearchMovieViewController: UICollectionViewDataSourcePrefetching{
+    // cellforRowAt이 호출 되기 전에 미리 호출됨
+    //즉, 셀이 화면에 보이기 직전에 필요한 리소스를 미리 다운을 받는 기능
+    //호출 시점은 애플이 알아서 결정
+    
+    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
+        for item in indexPaths {
+            
+            if list.count - 4 == item.row && isEnd != page+1{
+                page += 1
+                //callRequset()
+            }
+        }
+    }
+    //취소 기능: 단, 직접 취소하는 기능을 구현을 해주어야 한다.
+    func tableView(_ tableView: UITableView, cancelPrefetchingForRowsAt indexPaths: [IndexPath]) {
+        print(indexPaths)
+    }
+    
+    
     
 }
+
+
+
+

@@ -25,6 +25,7 @@
 		06F530072C183D8500487212 /* MovieModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F530062C183D8500487212 /* MovieModel.swift */; };
 		06F530092C18423D00487212 /* SearchMovieCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F530082C18423D00487212 /* SearchMovieCollectionViewCell.swift */; };
 		06F5300C2C184E6E00487212 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 06F5300B2C184E6E00487212 /* Kingfisher */; };
+		06F5300E2C1870F900487212 /* ViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F5300D2C1870F900487212 /* ViewController+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,7 @@
 		06F530042C183D6B00487212 /* SearchMovieViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMovieViewController.swift; sourceTree = "<group>"; };
 		06F530062C183D8500487212 /* MovieModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieModel.swift; sourceTree = "<group>"; };
 		06F530082C18423D00487212 /* SearchMovieCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMovieCollectionViewCell.swift; sourceTree = "<group>"; };
+		06F5300D2C1870F900487212 /* ViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				06C5457E2C10D6B200B3F23A /* ReuseIdentifier+.swift */,
+				06F5300D2C1870F900487212 /* ViewController+.swift */,
 			);
 			path = "Extension+";
 			sourceTree = "<group>";
@@ -221,6 +224,7 @@
 				06C5457A2C10CEFB00B3F23A /* DailyMovieModel.swift in Sources */,
 				06C545552C1057E700B3F23A /* SceneDelegate.swift in Sources */,
 				06F530092C18423D00487212 /* SearchMovieCollectionViewCell.swift in Sources */,
+				06F5300E2C1870F900487212 /* ViewController+.swift in Sources */,
 				06C5457F2C10D6B200B3F23A /* ReuseIdentifier+.swift in Sources */,
 				06C5457C2C10D37400B3F23A /* MovieTableViewCell.swift in Sources */,
 				06C545772C10CAA400B3F23A /* MovieViewController.swift in Sources */,
